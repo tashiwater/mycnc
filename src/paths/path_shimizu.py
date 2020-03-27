@@ -1,4 +1,6 @@
-from .pathmaker import PathMaker
+#!/usr/bin/env python
+# -*- encoding: utf-8 -*-
+from .base.pathmaker import PathMaker
 
 class PathShimizu(PathMaker):
     def make_data(self):
