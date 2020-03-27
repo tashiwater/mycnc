@@ -6,8 +6,11 @@ class DataMaker:
     def __init__(self):
         self.__move_sets = [MoveSet(0,0,0,0)]
 
+    def no_data(self):
+        self.__move_sets = []
+
     def set_movesets(self, move_sets):
-        self.__move_sets = copy.deepcopy(move_sets)
+        self.__move_sets = move_sets
 
     def xy_move(self, add_x, add_y):
         last = self.__move_sets[-1]
@@ -38,6 +41,8 @@ class DataMaker:
         last = self.__move_sets[-1]
         new_move = MoveSet(abs_x, abs_y, 0, last.solenoid_val)
         self.__move_sets.append(new_move)
+    
+
 
 
     
