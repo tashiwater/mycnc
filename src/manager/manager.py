@@ -34,19 +34,20 @@ class Manager:
         print(self.__command[key])
     
     def main(self):
-        self.__path_maker.make_data()
-        self.__path_maker.show_datas() 
         print("start")
         self.port_connect()
         while True:
-        # for i in range(1):
-            self.__path_maker.make_data()
+        # for i in range(10):
+            self.__path_maker.make_data_loop()
             datas = self.__path_maker.get_datas()       
+            if datas == []:
+                print("finish")
+                break
             print("waiting "+ self.__command["stand by"])
             self.wait_standby()
             print("send data")
             self.send_datas(datas)
             self.send_command("start")
             time.sleep(self.__path_maker.get_wait_sum() * 0.001)
-            input()
+            # input()
 

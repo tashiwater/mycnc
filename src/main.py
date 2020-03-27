@@ -4,7 +4,7 @@ from myserial.serial_to_mbed import MySerial
 from manager.manager import Manager
 
 #ここで読み込みファイルを変える
-from paths.path_shimizu import PathShimizu as Path
+from paths.path_shimizu_reverse import PathShimizuReverse as Path
 
 if __name__ == '__main__':
     data_maker = Path() #経路計画
