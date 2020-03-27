@@ -1,66 +1,43 @@
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
 from .moveset import MoveSet
-from .datamake_tool import DataMaker
-class PathMaker:
+import copy
+class DataMaker:
     def __init__(self):
-        self._datamaker = DataMaker()
+        self.__move_sets = [MoveSet(0,0,0,0)]
+
+    def set_movesets(self, move_sets):
+        self.__move_sets = copy.deepcopy(move_sets)
+
+    def xy_move(self, add_x, add_y):
+        last = self.__move_sets[-1]
+        new_move = MoveSet(last.x_mm + add_x, last.y_mm + add_y, 0, last.solenoid_val)
+        self.__move_sets.append(new_move)
     
-    def get_datas(self):
-        return self._datamaker.get_movesets()
-
-    def make_data(self):
-        #初期化
-        self._datamaker = DataMaker()
-        self._datamaker.push()
-        self._datamaker.xy_abs_move(50,0)
-        self._datamaker.pull()
-        self._datamaker.xy_abs_move(0,0)
-
-        """
-        val = 40
-        for i in range(4):
-            self._datamaker.xy_abs_move(0,val)
-            self._datamaker.wait(500)
-            self._datamaker.xy_abs_move(val,val)
-            self._datamaker.wait(500)
-            self._datamaker.xy_abs_move(val,0)
-            self._datamaker.wait(500)
-            self._datamaker.xy_abs_move(0,0)
-            self._datamaker.wait(500)
-            # self._datamaker.xy_abs_move(0,0)
-"""
-
-        """
-        #編成へ
-        self._datamaker.xy_abs_move(50,85)
-        self._datamaker.wait(1000)
-        self._datamaker.one_click()
-        #出撃
-        self._datamaker.xy_abs_move(55,90)
-        self._datamaker.wait(1000)
-        self._datamaker.one_click()
-
-
-        self._datamaker.xy_abs_move(52,53)
-        self._datamaker.wait(1000)
-        self._datamaker.one_click()
-        self._datamaker.xy_abs_move(52,53)
-        self._datamaker.wait(1000)
-        self._datamaker.one_click()
-        self._datamaker.xy_abs_move(40,65)
-        self._datamaker.wait(1000)
-        self._datamaker.one_click()
-        self._datamaker.xy_abs_move(0,0)
-        """
-
-    def get_wait_sum(self):
-        wait = 0
-        for data in self.get_datas():
-            wait += data.wait_ms
-        return wait
+    def one_click(self):
+        self.push()
+        self.pull()
     
-    def show_datas(self):
-        for data in self.get_datas():
-            print(data.get_data_str())
-        
+    def push(self):
+        last = self.__move_sets[-1]
+        push = MoveSet(last.x_mm, last.y_mm, 300, 1)
+        self.__move_sets.append(push)
+
+    def pull(self):
+        last = self.__move_sets[-1]
+        pull = MoveSet(last.x_mm, last.y_mm, 500, 0)
+        self.__move_sets.append(pull)
+    
+    def get_movesets(self):
+        return self.__move_sets
+    
+    def wait(self, ms):
+        self.__move_sets[-1].wait_ms = ms
+    
+    def xy_abs_move(self, abs_x, abs_y):
+        last = self.__move_sets[-1]
+        new_move = MoveSet(abs_x, abs_y, 0, last.solenoid_val)
+        self.__move_sets.append(new_move)
+
+
+    
