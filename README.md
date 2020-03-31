@@ -31,6 +31,7 @@ main{
 - python 2 or 3 or more
 - cv2
 - pip install pyserial
+- pip install mutagen
 
 
 ## Usage

@@ -8,12 +8,12 @@ class PathName(PathMaker):
         
     def make_data_override(self):
         #初期化
-        self.data_reset()
+        self._datamaker.restart()
         
         #具体的な処理を入れる
 
 
-        #原点に戻る
+        #事あるごとに原点に戻りましょう。リセットがしやすく
         self._datamaker.xy_abs_move(0,0)
         self._datamaker.wait(70000)
         

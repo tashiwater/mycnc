@@ -6,7 +6,7 @@ class PathMaker:
     def __init__(self, max_loop = None): #max_loop:Noneなら無限周回
         self._datamaker = DataMaker()
         self._count = 0
-        self.__max_loop = max_loop
+        self._max_loop = max_loop
     
     def data_reset(self):
         self._datamaker = DataMaker()
@@ -19,19 +19,24 @@ class PathMaker:
         pass
 
     def make_data_loop(self):
-        if self.__max_loop is not None:
+        if self._max_loop is not None:
             self._count+=1
-            if (self._count > self.__max_loop):
+            if (self._count > self._max_loop):
                 self._datamaker.no_data()
                 return
         self.make_data_override()
+
+        #一番最後の指示するwaitは0。(あるとマイコンが動作終了後もwaitしてしまう)
+        #代わりにpythonをsleepする
+        self.__last_wait_ms = self.get_datas()[-1].wait_ms
+        self._datamaker.wait(0)
 
 
     def get_wait_sum(self):
         wait = 0
         for data in self.get_datas():
             wait += data.wait_ms
-        return wait
+        return wait + self.__last_wait_ms
     
     def show_datas(self):
         for data in self.get_datas():

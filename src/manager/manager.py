@@ -49,5 +49,5 @@ class Manager:
             self.send_datas(datas)
             self.send_command("start")
             time.sleep(self.__path_maker.get_wait_sum() * 0.001)
-            # input()
+            
 

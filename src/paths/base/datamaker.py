@@ -11,13 +11,11 @@ class DataMaker:
 
     def set_movesets(self, move_sets):
         self.__move_sets = move_sets
-
-    def xy_move(self, add_x, add_y):
-        last = self.__move_sets[-1]
-        new_move = MoveSet(last.x_mm + add_x, last.y_mm + add_y, 0, last.solenoid_val)
-        self.__move_sets.append(new_move)
     
     def one_click(self):
+        last = self.__move_sets[-1]
+        new_move = MoveSet(last.x_mm, last.y_mm , 300, last.solenoid_val)
+        self.__move_sets.append(new_move)
         self.push()
         self.pull()
     
@@ -36,7 +34,7 @@ class DataMaker:
     
     def wait(self, ms):
         self.__move_sets[-1].wait_ms = ms
-    
+
     def xy_abs_move(self, abs_x, abs_y):
         last = self.__move_sets[-1]
         new_move = MoveSet(abs_x, abs_y, 0, last.solenoid_val)

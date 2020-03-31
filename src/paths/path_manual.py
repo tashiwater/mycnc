@@ -6,11 +6,11 @@ import cv2
 class PathManual(PathMaker):
     def __init__(self):
         super().__init__(max_loop=None) #Noneなら無限周回
-        #初期化
-        self.data_reset()
         
     def make_data_override(self):
         #具体的な処理を入れる
+        #初期化
+        self.data_reset()
         
 
 
