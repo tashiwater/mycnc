@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
 import time
-
+from .sound import Sound
 class Manager:
     def __init__(self, myserial, path_maker):
         self.__myserial = myserial
@@ -41,6 +41,8 @@ class Manager:
             self.__path_maker.make_data_loop()
             datas = self.__path_maker.get_datas()       
             if datas == []:
+                self.__path_maker.destructor()
+                Sound().output_bye()
                 print("finish")
                 break
             print("waiting "+ self.__command["stand by"])

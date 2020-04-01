@@ -7,9 +7,6 @@ class PathName(PathMaker):
         super().__init__(max_loop=None) #Noneなら無限周回
         
     def make_data_override(self):
-        #初期化
-        self._datamaker.restart()
-        
         #具体的な処理を入れる
 
 

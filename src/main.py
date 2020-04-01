@@ -4,7 +4,11 @@ from myserial.serial_to_mbed import MySerial
 from manager.manager import Manager
 
 #ここで読み込みファイルを変える
-from paths.konosuba_arena import Path as Path
+# from paths.path_manual import Path as Path
+# from paths.konosuba.konosuba_quest import Path as Path
+# from paths.konosuba.konosuba_quest_next import Path as Path
+# from paths.konosuba.konosuba_ticket import Path as Path
+from paths.konosuba.konosuba_boss import Path as Path
 
 if __name__ == '__main__':
     data_maker = Path() #経路計画
