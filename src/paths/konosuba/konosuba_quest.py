@@ -5,7 +5,7 @@ import time
 
 class Path(KonosubaTool):
     def __init__(self):
-        super().__init__(max_loop=1)
+        super().__init__(max_loop=int(input("loop count:")))
         
     def make_data_override(self):
         #次へ

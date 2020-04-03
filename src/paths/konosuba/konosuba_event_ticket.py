@@ -13,8 +13,17 @@ class Path(KonosubaTool):
         
         self._count = start_num -1 #途中から始めるときはここをstart-1にする
 
+    def go_hard(self):
+        # self.quest()
+        # self.event()
+        self.event_quest()
+        self.quest_hard()
+
     def make_data_override(self):
         self._datamaker.clear()
+        if self._count == 1:
+            self.go_hard()
+
         if self._count == 1:
             self.course4()
         elif self._count == 2:
@@ -29,7 +38,7 @@ class Path(KonosubaTool):
         
         self.ticket_use()
         # ok
-        self._datamaker.xy_abs_move(42.0,64.0)
+        self._datamaker.xy_abs_move(40.0,64.0)
         self._datamaker.one_click()
         self._datamaker.wait(5000)
         # ok

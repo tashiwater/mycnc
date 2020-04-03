@@ -3,11 +3,16 @@
 from .moveset import MoveSet
 from .datamaker import DataMaker
 class PathMaker:
-    def __init__(self, max_loop = None): #max_loop:Noneなら無限周回
+    def __init__(self, max_loop = None, file_name = "temp.csv"): #max_loop:Noneなら無限周回
         self._datamaker = DataMaker()
         self._count = 0
         self._max_loop = max_loop
+        self.__file_name = file_name
     
+    @property
+    def count(self):
+        return self._count
+
     def get_datas(self):
         return self._datamaker.get_movesets()
 
@@ -48,6 +53,6 @@ class PathMaker:
     
     def origin_wait_s(self, s):
         #原点で待つ
-        self._datamaker.xy_abs_move(0,0)
+        self._datamaker.go_start_position()
         self._datamaker.wait(s * 1000)
         
