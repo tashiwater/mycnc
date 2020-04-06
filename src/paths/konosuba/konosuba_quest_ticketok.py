@@ -12,13 +12,15 @@ class Path(KonosubaTool):
         if self.__from_attack == "y":
             self.attack()
             self.__from_attack = None
+            self.origin_wait_s(45)
         else:
             self.next_in1()
-            self.rebattle_in2()
+            self.rebattle_in3()
             self.ok_stamina_use()
-            self.origin_wait_s(150)
+            self.origin_wait_s(45)
             if self._count == self._max_loop:
-                self.next_in2()
+                self.next_in1()
+                self.next_in3()
                 self.origin_wait_s(0)
         
         

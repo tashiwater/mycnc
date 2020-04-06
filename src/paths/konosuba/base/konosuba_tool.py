@@ -47,7 +47,7 @@ class KonosubaTool(PathMaker):
     
     def ok_stamina_use(self):
         # ok
-        self._datamaker.xy_abs_move(40.0,65.0)
+        self._datamaker.xy_abs_move(41.0,65.0)
         self._datamaker.one_click()
         self._datamaker.wait(500)
 
@@ -57,7 +57,7 @@ class KonosubaTool(PathMaker):
         self._datamaker.wait(2000)
     
     def course3(self):
-        self._datamaker.xy_abs_move(24.0,74.0)
+        self._datamaker.xy_abs_move(25.0,74.0)
         self._datamaker.one_click()
         self._datamaker.wait(2000)
     def course2(self):
@@ -98,9 +98,9 @@ class KonosubaTool(PathMaker):
     
 
     def quest(self):
-        self._datamaker.xy_abs_move(58, 29)
+        self._datamaker.xy_abs_move(57, 29)
         self._datamaker.one_click()
-        self._datamaker.wait(2000)
+        self._datamaker.wait(3000)
     def event(self):
          #使えない
         self._datamaker.xy_abs_move(45, 95)

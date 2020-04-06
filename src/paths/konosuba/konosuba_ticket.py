@@ -29,14 +29,12 @@ class Path(KonosubaTool):
         
         self.ticket_use()
         # ok
-        self._datamaker.xy_abs_move(42.0,64.0)
+        self.ok_stamina_use()
+        self._datamaker.wait(6000)
+        
+        self._datamaker.xy_abs_move(13.0,94.0)
         self._datamaker.one_click()
-        self._datamaker.wait(5000)
-        # ok
-        self.ok1()
-        # self._datamaker.xy_abs_move(51.0,49.0)
-        # self._datamaker.one_click()
-        # self._datamaker.wait(500)
+        self._datamaker.wait(500)
         # back
         self.back()
 

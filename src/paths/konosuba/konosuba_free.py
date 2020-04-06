@@ -5,7 +5,7 @@ from .base.konosuba_tool import KonosubaTool
 class Path(KonosubaTool):
     def __init__(self):
         super().__init__(max_loop=3)
-        self._count = 1
+        self._count = int(input("start num"))-1
 
 
     def make_data_override(self):
@@ -34,5 +34,5 @@ class Path(KonosubaTool):
         if self._count == self._max_loop:
             self.back()
     
-        self._datamaker.xy_abs_move(0,0)
+        self.origin_wait_s(2)
         

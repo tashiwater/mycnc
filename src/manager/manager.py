@@ -6,7 +6,7 @@ class Manager:
     def __init__(self, myserial, path_maker):
         self.__myserial = myserial
         self.__path_maker = path_maker
-        self.__command = {"start": "start","stand by":"stand by", "echo":"echo" }
+        self.__command = {"start": "start","stand by":"stand by", "echo":"echo" , "error":"temp data"}
         self.__max_once_data = 80 #一度に送信できるデータ量
         self.sound = Sound()
     
@@ -19,10 +19,16 @@ class Manager:
     def wait_standby(self):
         while True:
             self.send_command("echo")
-            ret = self.__myserial.read_stripped(100)
-            print(ret)
+            for _ in range(10):
+                ret = self.__myserial.read_stripped(100)
+                if ret:
+                    print(ret)
+                    break
             if ret == self.__command["stand by"]:
                 break
+            if ret == self.__command["error"]:
+                self.__myserial.mbed_reset()
+
     
     def send_datas(self,datas):
         for data in datas:

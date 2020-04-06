@@ -2,7 +2,7 @@
 # -*- encoding: utf-8 -*-
 import cv2
 
-CAMERA_PORT = 1
+CAMERA_PORT = 2
 
 class Contours():
     def __init__(self, thresh, min_w, min_h, max_w=1000, max_h=1000):
@@ -33,7 +33,7 @@ class Contours():
         # cv2.waitKey(0)
         # 輪郭抽出
         cnts = cv2.findContours(im2, mode=cv2.RETR_EXTERNAL,
-                                method=cv2.CHAIN_APPROX_SIMPLE)[0]
+                                method=cv2.CHAIN_APPROX_SIMPLE)[1]
         # 輪郭図示
         red = (0, 0, 255)
         size_list = []
@@ -66,15 +66,17 @@ class Camera():
         self.__screen_width_mm = width_mm
         self.__screen_height_mm = height_mm
 
-    def setContoursParam(self,  min_w, min_h, thresh = 125, max_w=2000, max_h=2000):
+    def setContoursParam(self,  min_w, min_h, thresh = 125, max_w=500, max_h=2000):
         self.__contours = Contours(thresh, min_w, min_h, max_w, max_h)
     
     # 短形抽出開始, 領域を返す
     def findContours(self):
         im = cv2.VideoCapture(CAMERA_PORT)
         ret, frame = im.read()
+        # cv2.imshow("test", frame)
+        # cv2.waitKey(0)
         self.__contours.setImage(frame)
-        self.__contours.find_contours()
+        return self.__contours.find_contours()
 
     # 抽出された領域をもとに画像を切り取って返す
     def capture(self):
@@ -85,8 +87,9 @@ class Camera():
 
 if __name__ == '__main__':
     camera = Camera()
-    camera.setContoursParam(min_w = 200, min_h = 200)
-    camera.findContours()
+    camera.setContoursParam(min_w = 100, min_h = 100)
+    ret = camera.findContours()
+    cv2.imshow("frame2", ret)
     cv2.imshow("frame", camera.capture())
     cv2.waitKey(0)
 

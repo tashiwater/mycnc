@@ -83,7 +83,3 @@ class DataMaker:
         self.__move_sets.append(MoveSet(0, 0, 0, 0))
 
     
-
-
-
-    
