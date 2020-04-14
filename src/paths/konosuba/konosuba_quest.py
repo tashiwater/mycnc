@@ -4,8 +4,8 @@ from .base.konosuba_tool import KonosubaTool
 import time
 
 class Path(KonosubaTool):
-    def __init__(self):
-        super().__init__(max_loop=int(input("loop count:")))
+    def __init__(self,video):
+        super().__init__(video,max_loop=int(input("loop count:")))
         self.__from_attack = input("from attack? (y/n)")
 
     def make_data_override(self):

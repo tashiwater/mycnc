@@ -2,12 +2,36 @@
 # -*- encoding: utf-8 -*-
 from .moveset import MoveSet
 from .datamaker import DataMaker
+
+
+import os
+
 class PathMaker:
-    def __init__(self, max_loop = None, file_name = "temp.csv"): #max_loop:Noneなら無限周回
+    def __init__(self, video = None, max_loop = None, ): #max_loop:Noneなら無限周回
         self._datamaker = DataMaker()
         self._count = 0
         self._max_loop = max_loop
-        self.__file_name = file_name
+        self._video = video
+
+    def video_start(self):
+        if self._video is not None:
+            print("d")
+            self._video.start()
+
+    def video_save(self):
+        if self._video is not None:
+            self._video.stop()
+            
+            #現在時刻でmp4ファイル生成
+            current_path = os.path.dirname(os.path.abspath(__file__))
+            self.movie_folder = current_path + "./../../../data/movie/"
+            import datetime
+            now = datetime.datetime.now()
+            filename = self.movie_folder + now.strftime('%Y%m%d_%H%M%S') + '.mp4'
+            self._video.save(filename)
+
+    def __del__(self):
+        self.video_save()
     
     @property
     def count(self):
@@ -19,11 +43,7 @@ class PathMaker:
     def make_data_override(self):
         #ここを継承先で実行してもらう
         pass
-
-    def destructor(self):
-        #ここを継承先で実装する
-        pass
-
+    
     def make_data_loop(self):
         if self._max_loop is not None:
             self._count+=1

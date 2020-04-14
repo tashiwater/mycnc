@@ -3,9 +3,9 @@
 from ...base.pathmaker import PathMaker
 
 class KonosubaTool(PathMaker):
-    def __init__(self, max_loop = None):
-        super().__init__(max_loop=max_loop)
-        # self._datamaker.set_reverse(True)
+    def __init__(self, video, max_loop = None):
+        super().__init__(video, max_loop=max_loop)
+        self._datamaker.set_offset(1,0)
         # self._datamaker.set_center(59*0.5, 105*0.5)
     
     def attack_prepare(self):
@@ -16,7 +16,7 @@ class KonosubaTool(PathMaker):
 
     def attack(self):
         # 挑戦する
-        self._datamaker.xy_abs_move(55, 90)
+        self._datamaker.xy_abs_move(56, 90)
         self._datamaker.one_click()
     
     def next_in1(self):

@@ -3,8 +3,8 @@
 from .base.konosuba_tool import KonosubaTool
 #  エリスクエストに[挑戦する] で呼び出す
 class Path(KonosubaTool):
-    def __init__(self):
-        super().__init__(max_loop=3)
+    def __init__(self,video):
+        super().__init__(video,max_loop=3)
         self._count = int(input("start num"))-1
 
 
@@ -29,10 +29,6 @@ class Path(KonosubaTool):
         self._datamaker.one_click()
         self._datamaker.wait(5000)
         # ok
-        self.ok1()
-
-        if self._count == self._max_loop:
-            self.back()
-    
+        self.ok1()    
         self.origin_wait_s(2)
         

@@ -6,8 +6,8 @@ import readchar
 import os
 
 class Path(PathMaker):
-    def __init__(self):
-        super().__init__(max_loop=None) #Noneなら無限周回
+    def __init__(self,video):
+        super().__init__(video,max_loop=None) #Noneなら無限周回
         self.__old_xy = [0,0]
         self.__long_stroke_mm = 5
         self.__short_stroke_mm = 1
