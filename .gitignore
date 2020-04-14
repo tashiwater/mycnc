@@ -2,4 +2,4 @@
 *.ipynb_checkpoints
 __pycache__
 /data/temp.txt
-/data/movie/*
+/data/movie/*.mp4
