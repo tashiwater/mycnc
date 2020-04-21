@@ -4,7 +4,7 @@
 from .base.konosuba_tool import KonosubaTool
 
 class Path(KonosubaTool):
-    def __init__(self,video):
+    def __init__(self,video = None):
         super().__init__(video, max_loop=3)
         self._count = 0
         

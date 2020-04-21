@@ -6,7 +6,7 @@ import time
 
 
 class Path(KonosubaTool):
-    def __init__(self,video):
+    def __init__(self,video = None):
         start_num = int(input("start num:"))
         count = input(pycolor.RED + "Warn: this might use kuorts."+pycolor.END+ " loop count: ")
         super().__init__(video,max_loop=int(count))

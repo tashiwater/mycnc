@@ -1,11 +1,7 @@
-#!/usr/bin/env python
-# -*- encoding: utf-8 -*-
 import cv2
 
-CAMERA_PORT = 2
-
 class Contours():
-    def __init__(self, thresh, min_w, min_h, max_w=1000, max_h=1000):
+    def __init__(self, min_w = 0, min_h = 0, max_w=5000, max_h=5000, thresh = 125):
         self.thresh = thresh
         self.__min_w = min_w
         self.__min_h = min_h
@@ -28,7 +24,7 @@ class Contours():
         im2 = cv2.threshold(graygauss, thresh = self.thresh, maxval=255,
                             type=cv2.THRESH_BINARY_INV)[1]
 
-        # cv2.imshow("threshold", im2)
+        cv2.imshow("threshold", im2)
         # plt.imshow(im2, cmap="gray")
         # cv2.waitKey(0)
         # 輪郭抽出
@@ -53,44 +49,11 @@ class Contours():
         return img
     
     def get_rectangle_img(self):
-        for lis in self.size_list:
-            temp = self.raw_img[lis[2]:lis[3], lis[0]:lis[1]]
-            yield temp
-
-class Camera():
-    def __init__(self):
-        self.__screen_width_mm = 110
-        self.__screen_height_mm = 60
-
-    def setScreenSizeMM(self, width_mm, height_mm):
-        self.__screen_width_mm = width_mm
-        self.__screen_height_mm = height_mm
-
-    def setContoursParam(self,  min_w, min_h, thresh = 125, max_w=500, max_h=2000):
-        self.__contours = Contours(thresh, min_w, min_h, max_w, max_h)
+        ret = [self.raw_img[lis[2]:lis[3], lis[0]:lis[1]] for lis in self.size_list]
+        # for lis in self.size_list:
+        #     temp = self.raw_img[lis[2]:lis[3], lis[0]:lis[1]]
+        #     yield temp
+        return ret
     
-    # 短形抽出開始, 領域を返す
-    def findContours(self):
-        im = cv2.VideoCapture(CAMERA_PORT)
-        ret, frame = im.read()
-        # cv2.imshow("test", frame)
-        # cv2.waitKey(0)
-        self.__contours.setImage(frame)
-        return self.__contours.find_contours()
-
-    # 抽出された領域をもとに画像を切り取って返す
-    def capture(self):
-        im = cv2.VideoCapture(CAMERA_PORT)
-        ret, frame = im.read()
-        for roi_img in self.__contours.get_rectangle_img():
-            return roi_img
-
-if __name__ == '__main__':
-    camera = Camera()
-    camera.setContoursParam(min_w = 100, min_h = 100)
-    ret = camera.findContours()
-    cv2.imshow("frame2", ret)
-    cv2.imshow("frame", camera.capture())
-    cv2.waitKey(0)
-
-
+    def get_corner_px(self): #x1, x2, y1, y2の順
+        return self.size_list

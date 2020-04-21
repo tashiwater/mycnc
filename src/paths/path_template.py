@@ -3,12 +3,21 @@
 from .base.pathmaker import PathMaker
 
 class Path(PathMaker):
-    def __init__(self, video):
-        super().__init__(video, max_loop=None) #Noneなら無限周回
+    def __init__(self):
+        super().__init__() 
+
+        #以下は好きにいじる
+        self.max_loop = 1 #Noneなら無限周回
+        self.set_db("temp.yaml")
         
     def make_data_override(self):
         #具体的な処理を入れる
 
+        #例: yamlを使う
+        # self.from_db("test")
+        # self.from_db("test2")
+
+        #例: 直接打ち込む
         self._datamaker.xy_abs_move(10,10)
         self._datamaker.one_click()
         self._datamaker.pull()
@@ -16,6 +25,6 @@ class Path(PathMaker):
         self._datamaker.wait(500)
 
 
-        #事あるごsとに原点に戻りましょう。リセットがしやすくなります
-        self.origin_wait_s(70)
+        #事あるごとに原点に戻りましょう。リセットがしやすくなります
+        self.origin_wait_s(1)
         

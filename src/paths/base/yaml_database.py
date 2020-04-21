@@ -14,7 +14,7 @@ class YamlDatabase():
 
     def load_from_file(self):
         with open(self.__yaml_path, 'r') as f:
-            self.__all_data = yaml.load(f)
+            self.__all_data = yaml.load(f, Loader=yaml.FullLoader)
 
 
     def dump_to_file(self):

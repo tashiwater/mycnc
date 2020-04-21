@@ -4,7 +4,7 @@ from .base.konosuba_tool import KonosubaTool
 import time
 #  エリスクエストに[挑戦する] で呼び出す
 class Path(KonosubaTool):
-    def __init__(self,video):
+    def __init__(self,video = None):
         super().__init__(video,max_loop=3)
 
     def make_data_override(self):

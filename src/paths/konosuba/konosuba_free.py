@@ -3,7 +3,7 @@
 from .base.konosuba_tool import KonosubaTool
 #  エリスクエストに[挑戦する] で呼び出す
 class Path(KonosubaTool):
-    def __init__(self,video):
+    def __init__(self,video = None):
         super().__init__(video,max_loop=3)
         self._count = int(input("start num"))-1
 

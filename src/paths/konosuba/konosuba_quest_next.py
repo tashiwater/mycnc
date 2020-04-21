@@ -6,7 +6,7 @@ from .base.konosuba_tool import KonosubaTool
 
 
 class Path(KonosubaTool):
-    def __init__(self,video):
+    def __init__(self,video = None):
         super().__init__(video,max_loop=int(input("loop count:")))
         # self._count = 0
         self.__from_prepare = input("from attack prepare (y/n):")

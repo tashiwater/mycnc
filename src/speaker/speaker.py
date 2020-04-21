@@ -4,9 +4,8 @@ import time
 import os
 
 class Mp3Player:
-    def __init__(self):
-        current_path = os.path.dirname(os.path.abspath(__file__))
-        self.sounds_folder = current_path + "./../../data/sounds/"
+    def __init__(self, sounds_folder):
+        self.sounds_folder = sounds_folder
         pygame.mixer.init()
 
     def play_mp3(self, file_name):
@@ -17,9 +16,10 @@ class Mp3Player:
         time.sleep(mp3_length + 0.8) #再生開始後、音源の長さだけ待つ(0.25待つのは誤差解消)
         pygame.mixer.music.stop() #音源の長さ待ったら再生停止
 
-class Sound(Mp3Player):
-    def __init__(self):
-        self.__player = Mp3Player()
+class Speaker(Mp3Player):
+    def __init__(self, sounds_folder):
+        self.__player = Mp3Player(sounds_folder)
+        
     def output_bye(self):
         otukare =  'line-girl1-otsukaresamadeshita1.mp3' #再生したいmp3ファイル
         self.__player.play_mp3(otukare)
