@@ -25,8 +25,6 @@ class Video:
 
     @property
     def latest_img(self):
-        if self.frames != []:
-            self.__latest_img = self.frames[-1]
         return self.__latest_img
 
     def connect_camera(self):
@@ -55,8 +53,8 @@ class Video:
     def interrupt(self):
         # 撮影
         if self._cap is not None:
-            _, frame = self._cap.read()
-            self.frames.append(frame)
+            _, self.__latest_img = self._cap.read()
+            self.frames.append(self.__latest_img)
         # 次のinterruptを設定
         self.thread = threading.Timer(self._period, self.interrupt)
         self.thread.setDaemon(True)  # このクラスをデーモンにする。他プログラムが終了したら終了する
@@ -77,7 +75,6 @@ class Video:
             self.__video_writer.write(frame)
         self.__latest_img = self.frames[-1]
         self.frames = []
-        print("once save")
 
     def start(self):
         # 1度だけstart

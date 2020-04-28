@@ -6,7 +6,7 @@ from ...base.pathmaker import PathMaker
 class KonosubaTool(PathMaker):
     def __init__(self, video, max_loop=None):
         super().__init__(video, max_loop=max_loop)
-        self._datamaker.set_offset(1, 0)
+
         # self._datamaker.set_center(59*0.5, 105*0.5)
 
     def attack_prepare(self):
@@ -22,7 +22,7 @@ class KonosubaTool(PathMaker):
 
     def next_in1(self):
         # 次へ
-        self._datamaker.xy_abs_move(55, 55)
+        self._datamaker.xy_abs_move(55, 50)
         self._datamaker.one_click()
         self._datamaker.wait(4000)
 
@@ -48,7 +48,7 @@ class KonosubaTool(PathMaker):
 
     def ok_stamina_use(self):
         # ok
-        self._datamaker.xy_abs_move(41.0, 65.0)
+        self._datamaker.xy_abs_move(42.0, 65.0)
         self._datamaker.one_click()
         self._datamaker.wait(500)
 
@@ -122,4 +122,3 @@ class KonosubaTool(PathMaker):
         self._datamaker.xy_abs_move(5, 80)
         self._datamaker.one_click()
         self._datamaker.wait(2000)
-

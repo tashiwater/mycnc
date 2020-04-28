@@ -40,6 +40,8 @@ class Manager:
 
     def send_datas(self, datas):
         if self.__myserial is None:
+            for data in datas:
+                print(data.get_data_str())
             return
         print("waiting " + self.__msg["stand by"])
         self.wait_standby()
@@ -75,9 +77,9 @@ class Manager:
             self.__video.start()
         # main開始時刻で保存
         now = datetime.datetime.now()
-        filename = now.strftime("%Y%m%d_%H%M%S") + ".mp4"
+        filename = now.strftime("%Y%m%d_%H%M") + ".mp4"
         self.__video.open_mp4(filename)
-
+        self.__path_maker.init_override()
         while True:
             # 経路作成
             self.__path_maker.make_data_loop()

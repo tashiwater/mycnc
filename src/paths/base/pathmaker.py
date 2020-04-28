@@ -12,6 +12,10 @@ class PathMaker:
         self._count = 0
         self._max_loop = max_loop
 
+    def init_override(self):
+        # ここを継承先で実装してもらう.
+        pass
+
     def make_data_override(self):
         # ここを継承先で実装してもらう.毎ループ実行される
         pass
@@ -23,17 +27,22 @@ class PathMaker:
         self._datamaker.go_start_position()
         self._datamaker.wait(s * 1000)
 
+    def set_yaml_folder(self, val):
+        self.__yaml_folder = val
+
     def set_db(self, filename):
         """
         yamlを使うときにこれでセットする
         """
-        self.__db = YamlDatabase(filename)
+        abs_path = self.__yaml_folder + filename
+        self._db = YamlDatabase(abs_path)
+        self._db.load_from_file()
 
     def from_db(self, key):
         """
         yamlのデータを用いて経路生成
         """
-        data = self.__db.get(key)
+        data = self._db.get(key)
         for one_move in data:
             action = one_move["action"]
             if action == "move":
@@ -42,6 +51,10 @@ class PathMaker:
                 self._datamaker.one_click()
             elif action == "wait":
                 self._datamaker.wait(one_move["ms"])
+            elif action == "push":
+                self._datamaker.push()
+            elif action == "pull":
+                self._datamaker.pull()
 
     @property
     def max_loop(self):
@@ -99,7 +112,3 @@ class PathMaker:
     def show_datas(self):
         for data in self.get_datas():
             print(data.get_data_str())
-
-    # [TODO]
-    def set_yaml_folder(self, path):
-        pass

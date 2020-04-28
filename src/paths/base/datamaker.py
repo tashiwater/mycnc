@@ -20,14 +20,13 @@ class DataMaker:
         self.__move_sets = [MoveSet(0, 0, 0, 0)]
 
     def one_click(self):
-        last = self.__move_sets[-1]
-        new_move = MoveSet(last.x_mm, last.y_mm, 300, last.solenoid_val)
-        self.__move_sets.append(new_move)
         self.push()
         self.pull()
 
     def push(self):
         last = self.__move_sets[-1]
+        new_move = MoveSet(last.x_mm, last.y_mm, 300, last.solenoid_val)
+        self.__move_sets.append(new_move)
         push = MoveSet(last.x_mm, last.y_mm, 300, 1)
         self.__move_sets.append(push)
 

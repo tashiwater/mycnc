@@ -32,6 +32,11 @@ class ExtractScreen:
     def get_img_with_rectangle(self):
         return self.rectangle_img
 
+    def px2mm_in_screen(self, x_px, y_px):
+        y_mm = x_px / self.width_px * self.__screen_width_mm
+        x_mm = y_px / self.height_px * self.__screen_height_mm
+        return x_mm, y_mm
+
     def px2mm_from_all_img(self, x_px, y_px):
         # マイコン側とx,yが逆転しているため、出力も逆転させている
         y_mm = (x_px - self.__x1) / self.width_px * self.__screen_width_mm
