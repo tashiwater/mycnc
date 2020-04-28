@@ -9,6 +9,12 @@ class MySerial():
         self.ser = None
         self.__timeout = timeout
 
+    def port_connect(self):
+        port = self.search_com_port()   
+        if port == []:
+            raise ConnectionError("there is no port")
+        self.init_port(port[0])
+    
     def search_com_port(self):
         coms = serial.tools.list_ports.comports()
         comlist = []
@@ -17,13 +23,10 @@ class MySerial():
         return comlist
 
     def init_port(self, use_port):
-        # use_port = self.search_com_port()
         if use_port is None:
             return False
         if self.ser is not None:
             self.ser.close()
-        # print("use_port", use_port)
-
         self.ser = serial.Serial(use_port, 9600, timeout=self.__timeout)
 
     def write(self, data):

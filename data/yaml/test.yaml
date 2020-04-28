@@ -1,0 +1,23 @@
+test:
+  - action : move
+    x : 10
+    y : 10
+  - action : click
+  - action : wait
+    ms : 1000
+  - action : move
+    x : 40
+    y : -20
+  - action : click
+  - action : wait
+    ms : 2000
+
+test2:
+  - action : move
+    x : 30
+    y : -10
+  - action : click
+  - action : wait
+    ms : 2000
+  
+  

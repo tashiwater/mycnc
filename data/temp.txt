@@ -1,4 +1,0 @@
-# 
-self._datamaker.xy_abs_move(52, 15)
-self._datamaker.one_click()
-self._datamaker.wait(1000)
