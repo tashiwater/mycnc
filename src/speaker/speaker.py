@@ -11,7 +11,8 @@ class Mp3Player:
     def play_mp3(self, file_name):
         target_path = self.sounds_folder + file_name
         pygame.mixer.music.load(target_path) #音源を読み込み
-        mp3_length = mp3(target_path).info.length #音源の長さ取得
+        # mp3_length = mp3(target_path).info.length #音源の長さ取得
+        mp3_length = 3
         pygame.mixer.music.play(1) #再生開始。1の部分を変えるとn回再生(その場合は次の行の秒数も×nすること)
         time.sleep(mp3_length + 0.8) #再生開始後、音源の長さだけ待つ(0.25待つのは誤差解消)
         pygame.mixer.music.stop() #音源の長さ待ったら再生停止
@@ -21,11 +22,11 @@ class Speaker(Mp3Player):
         self.__player = Mp3Player(sounds_folder)
         
     def output_bye(self):
-        otukare =  'line-girl1-otsukaresamadeshita1.mp3' #再生したいmp3ファイル
+        otukare =  'line-girl1-otsukaresamadeshita1.ogg' #再生したいmp3ファイル
         self.__player.play_mp3(otukare)
-        sorezya =  "line-girl1-sorezyane1.mp3"
+        sorezya =  "line-girl1-sorezyane1.ogg"
         self.__player.play_mp3(sorezya)
-        bye = "line-girl1-byebye1.mp3"
+        bye = "line-girl1-byebye1.ogg"
         self.__player.play_mp3(bye)
 
     def play(self,file_name):

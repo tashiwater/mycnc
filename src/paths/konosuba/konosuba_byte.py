@@ -3,19 +3,22 @@
 from .base.konosuba_tool import KonosubaTool
 import time
 
+
 class Path(KonosubaTool):
-    def __init__(self,video = None):
-        super().__init__(video,max_loop=1)
+    def init_override(self):
+        self.max_loop = 1
+        self.set_db("konosuba.yaml")
 
     def make_data_override(self):
-        self._datamaker.xy_abs_move(24.0,100.0)
+        self.from_db("home")
+        self._datamaker.xy_abs_move(24.0, 100.0)
         self._datamaker.one_click()
         self._datamaker.wait(4000)
         # 1
         self._datamaker.xy_abs_move(47, 90)
         self._datamaker.one_click()
         self._datamaker.wait(2000)
-                # ok
+        # ok
         self._datamaker.xy_abs_move(52, 55)
         self._datamaker.one_click()
         self._datamaker.wait(500)
@@ -36,13 +39,6 @@ class Path(KonosubaTool):
         self._datamaker.one_click()
         self._datamaker.wait(500)
 
-                # back
+        # back
         self.back()
         self.origin_wait_s(0)
-
-
-
-            
-        
-        
-        

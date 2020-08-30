@@ -48,6 +48,8 @@ main{
     - 1文字入力用モジュール
 - pip install mutagen pygame
     - 音声再生用
+- pip install PyYaml
+    - mac使用時
 
 
 ## Usage

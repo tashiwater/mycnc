@@ -4,9 +4,8 @@ from .base.konosuba_tool import KonosubaTool
 
 #  エリスクエストに[挑戦する] で呼び出す
 class Path(KonosubaTool):
-    def __init__(self, video=None):
-        super().__init__(video, max_loop=3)
-        self._count = int(input("start num")) - 1
+    def init_override(self):
+        self.max_loop = 4
 
     def make_data_override(self):
         if self._count == 1:
@@ -17,6 +16,7 @@ class Path(KonosubaTool):
             1: [19.0, 50.0],
             2: [20.0, 70.0],
             3: [20.0, 85.0],
+            4: [41, 55],
         }  # エリス、経験値、魔法の順
         target_xy = course_dict[self._count]
         self._datamaker.xy_abs_move(target_xy[0], target_xy[1])
@@ -31,6 +31,8 @@ class Path(KonosubaTool):
         # ok
         self.ok_stamina_use()
         self._datamaker.wait(6000)
-        # ok
-        self.ok1()
+        self._datamaker.xy_abs_move(16.0, 94.0)
+        self._datamaker.one_click()
+        # # ok
+        # self.ok1()
         self.origin_wait_s(2)

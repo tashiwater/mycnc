@@ -11,13 +11,15 @@ class Path(KonosubaTool):
         self.__from_attack = input("from atack? y/n:")
 
     def make_data_override(self):
+        self._datamaker.clear()
         if self.__from_attack == "y":
             self.__from_attack = "n"
             self.attack()
         else:
             self.rebattle_in2()
             self.ok_stamina_use()
-        self.origin_wait_s(85)  # 最高難度:100 一つ下：70
+        self.wait_konosuba(100)
+        # self.origin_wait_s(100)  # 最高難度:100 一つ下：70
 
         if self._count == self._max_loop:
             self.next_in2()

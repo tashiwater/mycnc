@@ -94,7 +94,8 @@ class PathMaker:
             self._datamaker.clear()
             return
         # 初期化
-        self._datamaker.restart()
+        # self._datamaker.restart()
+        self._datamaker.clear()
         # 経路作成 継承先クラスで実装
         self.make_data_override()
 

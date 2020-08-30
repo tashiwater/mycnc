@@ -28,6 +28,7 @@ class Manager:
             return
         while True:
             self.send_command("echo")
+            print("send echo")
             for _ in range(10):
                 ret = self.__myserial.read_stripped(100)
                 if ret:
@@ -64,21 +65,22 @@ class Manager:
         # NUCLEO がresetしたらこっちも終了
         ret = self.__myserial.read_stripped(20)
         if ret == "reset":
-            self.__speaker.play("line-girl1-hizyouteishibuttonga1.mp3")
+            self.__speaker.play("line-girl1-hizyouteishibuttonga1.ogg")
             raise ConnectionError("NUCLEO was reset. Program stop.")
 
     def __del__(self):
-        self.__video.save()
-        self.__video.mp4_close()
+        if self.__video is not None:
+            self.__video.save()
+            self.__video.mp4_close()
 
     def main(self):
         # 撮影スタート
         if self.__video is not None:
             self.__video.start()
-        # main開始時刻で保存
-        now = datetime.datetime.now()
-        filename = now.strftime("%Y%m%d_%H%M") + ".mp4"
-        self.__video.open_mp4(filename)
+            # main開始時刻で保存
+            now = datetime.datetime.now()
+            filename = now.strftime("%Y%m%d_%H%M") + ".mp4"
+            self.__video.open_mp4(filename)
         self.__path_maker.init_override()
         while True:
             # 経路作成
@@ -96,12 +98,13 @@ class Manager:
                 # self.__max_once_data 個ずつ送信する
                 self.send_datas(datas[data_posi - self.__max_once_data : data_posi])
                 print("loop {} is runnning".format(self.__path_maker.count))
-                self.__video.save()
+                if self.__video is not None:
+                    self.__video.save()
                 time.sleep(self.__path_maker.get_wait_sum() * 0.001)
                 self.reset_check()
-
-        self.__video.save()
-        self.__video.mp4_close()
+        if self.__video is not None:
+            self.__video.save()
+            self.__video.mp4_close()
         # path終了
         self.__speaker.output_bye()
         print("finish")

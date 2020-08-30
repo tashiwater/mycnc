@@ -1,19 +1,12 @@
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
 from .base.konosuba_tool import KonosubaTool
-from ..base.pycolor import pycolor
-import time
 
 
 class Path(KonosubaTool):
-    def __init__(self, video=None):
-        start_num = int(input("start num:"))
-        count = input(
-            pycolor.RED + "Warn: this might use kuorts." + pycolor.END + " loop count: "
-        )
-        super().__init__(video, max_loop=int(count))
+    def init_override(self):
         self._datamaker.set_offset(1, 0)
-        self._count = start_num - 1  # 途中から始めるときはここをstart-1にする
+        self.max_loop = 4
 
     def make_data_override(self):
         self._datamaker.clear()

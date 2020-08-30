@@ -13,7 +13,9 @@ class MySerial():
         port = self.search_com_port()   
         if port == []:
             raise ConnectionError("there is no port")
-        self.init_port(port[0])
+        print(port[1])
+        self.init_port(port[1]) # macの時はこの番号だった。
+        
     
     def search_com_port(self):
         coms = serial.tools.list_ports.comports()

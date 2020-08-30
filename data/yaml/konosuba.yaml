@@ -1,0 +1,21 @@
+quest_slide:
+- action: move
+  x: 31.204013377926422
+  y: 49.33454876937101
+- action: push
+- action: move
+  x: 31.705685618729095
+  y: 92.25159525979946
+- action: pull
+
+home:
+- action: move
+  x: 58.09045226130654
+  y: 18.684931506849313
+- action: push
+- action: move
+  x: 58.09045226130654
+  y: 18.684931506849313
+- action: pull
+- action: wait
+  ms: 3000

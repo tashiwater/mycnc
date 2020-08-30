@@ -4,14 +4,12 @@ from ...base.pathmaker import PathMaker
 
 
 class KonosubaTool(PathMaker):
-    def __init__(self, video, max_loop=None):
-        super().__init__(video, max_loop=max_loop)
-
-        # self._datamaker.set_center(59*0.5, 105*0.5)
+    def init_override(self):
+        self._datamaker.set_offset(1, 0)
 
     def attack_prepare(self):
         # 挑戦準備
-        self._datamaker.xy_abs_move(47, 93)
+        self._datamaker.xy_abs_move(45, 93)
         self._datamaker.one_click()
         self._datamaker.wait(3000)
 
@@ -22,8 +20,7 @@ class KonosubaTool(PathMaker):
 
     def next_in1(self):
         # 次へ
-        self._datamaker.xy_abs_move(55, 50)
-        self._datamaker.one_click()
+        self.rebattle_in3()
         self._datamaker.wait(4000)
 
     def next_in2(self):
@@ -33,11 +30,11 @@ class KonosubaTool(PathMaker):
 
     def next_in3(self):
         # 次へ
-        self._datamaker.xy_abs_move(55.0, 75.0)
+        self._datamaker.xy_abs_move(54.0, 75.0)
         self._datamaker.one_click()
 
     def rebattle_in2(self):
-        self._datamaker.xy_abs_move(55.0, 40.0)
+        self._datamaker.xy_abs_move(56.0, 40.0)
         self._datamaker.one_click()
 
     def rebattle_in3(self):
@@ -48,12 +45,21 @@ class KonosubaTool(PathMaker):
 
     def ok_stamina_use(self):
         # ok
-        self._datamaker.xy_abs_move(42.0, 65.0)
+        self._datamaker.wait(1000)
+        self._datamaker.xy_abs_move(40.0, 65.0)
         self._datamaker.one_click()
         self._datamaker.wait(500)
+        # self._datamaker.xy_abs_move(42.0, 63.0)
+        # self._datamaker.one_click()
+        # self._datamaker.wait(500)
+
+    def wait_konosuba(self, s):
+        self._datamaker.xy_abs_move(20, 65.0)
+        self._datamaker.wait(s * 1000)
+
 
     def course4(self):
-        self._datamaker.xy_abs_move(17.0, 70.0)
+        self._datamaker.xy_abs_move(18.0, 70.0)
         self._datamaker.one_click()
         self._datamaker.wait(2000)
 
