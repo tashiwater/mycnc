@@ -4,4 +4,4 @@ __pycache__
 /data/temp.txt
 /data/yaml/temp.yaml
 /data/movie/*.mp4
-*._DS_Store
+._DS_Store

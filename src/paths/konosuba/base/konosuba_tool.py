@@ -46,7 +46,7 @@ class KonosubaTool(PathMaker):
     def ok_stamina_use(self):
         # ok
         self._datamaker.wait(1000)
-        self._datamaker.xy_abs_move(40.0, 65.0)
+        self._datamaker.xy_abs_move(42.0, 65.0)
         self._datamaker.one_click()
         self._datamaker.wait(500)
         # self._datamaker.xy_abs_move(42.0, 63.0)
