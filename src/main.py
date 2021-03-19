@@ -19,13 +19,13 @@ from paths.konosuba.konosuba_boss import Path
 
 # from paths.konosuba.konosuba_quest_next import Path
 
-
+ 
 # from paths.path_register_gui import Path  # GUIで登録するPath
 
 # from paths.path_test_yaml import Path
 
 
-CAMERA_PORT = 2
+CAMERA_PORT = 1
 TEST_MODE = False
 
 if __name__ == "__main__":

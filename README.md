@@ -42,16 +42,17 @@ main{
 ## Requirement
 
 - python 2 or 3 or more
-- cv2
-- pip install pyserial
-- pip install readchar
-    - 1文字入力用モジュール
-- pip install mutagen pygame
+- pip3 install opencv-contrib-python
+- pip3 install pillow
+- pip3 install pyserial
+- pip3 install mutagen pygame
     - 音声再生用
-- pip install PyYaml
+- pip3 install PyYaml
     - mac使用時
 
 
+- pip install readchar
+    - 1文字入力用モジュール
 ## Usage
 1. ./src/main.py 内の経路ファイル名を使うものに書き換える
 1. python ./src/main.py

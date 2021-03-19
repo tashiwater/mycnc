@@ -18,7 +18,7 @@ class Path(KonosubaTool):
             self.__from_prepare = "y"  # 2回目以降は挑戦準備からやる
         self.attack()
         # self.origin_wait_s(60)
-        self._datamaker.wait(100000)
+        self._datamaker.wait(90000)
         self.next_in1()
         self.next_in3()
         # self.origin_wait_s(12)
